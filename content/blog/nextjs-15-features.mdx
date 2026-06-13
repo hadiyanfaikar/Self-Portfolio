@@ -1,0 +1,63 @@
+---
+title: "Modern Web Development with Next.js 15"
+description: "Exploring the latest features in Next.js 15 including server components, streaming, and the new caching architecture."
+date: "2024-04-20"
+tags: ["Web Development", "Next.js", "React", "TypeScript"]
+---
+
+## What's New in Next.js 15
+
+Next.js 15 brings significant improvements to the React ecosystem, building on the foundation of the App Router introduced in version 13.
+
+## React Server Components
+
+Server Components are now the default in Next.js, enabling:
+
+- Zero client-side JavaScript for static content
+- Direct database queries from components
+- Automatic code splitting
+
+```tsx
+// This component runs on the server
+async function BlogPosts() {
+  const posts = await db.post.findMany();
+  return (
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
+  );
+}
+```
+
+## Streaming and Suspense
+
+The new streaming architecture allows for progressive page loading:
+
+```tsx
+import { Suspense } from 'react';
+
+export default function Page() {
+  return (
+    <div>
+      <Header />
+      <Suspense fallback={<Skeleton />}>
+        <SlowComponent />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+## Performance Improvements
+
+Key performance enhancements include:
+
+- Partial Prerendering (PPR)
+- Improved image optimization
+- Smarter bundling strategies
+
+## Conclusion
+
+Next.js 15 represents a significant step forward in React development, making it easier to build fast, scalable applications.

@@ -1,0 +1,52 @@
+---
+title: "Building Scalable ML Pipelines with Kubernetes"
+description: "A comprehensive guide to deploying and scaling machine learning pipelines using Kubernetes, Kubeflow, and best practices for MLOps."
+date: "2024-06-01"
+tags: ["MLOps", "Kubernetes", "Machine Learning", "DevOps"]
+---
+
+## Introduction
+
+In the modern AI landscape, deploying machine learning models to production is no longer just about training an accurate model. It requires robust infrastructure, monitoring, and automation. Kubernetes has emerged as the de facto standard for orchestrating containerized workloads, making it an excellent choice for ML pipelines.
+
+## Why Kubernetes for ML?
+
+Kubernetes offers several advantages for machine learning workloads:
+
+- **Scalability**: Automatically scale training jobs based on demand
+- **Resource Management**: Efficient GPU scheduling and allocation
+- **Reproducibility**: Containerized environments ensure consistent runs
+- **Ecosystem**: Rich tools like Kubeflow, MLflow, and Seldon
+
+## Setting Up Kubeflow
+
+Kubeflow is an ML toolkit for Kubernetes that simplifies the deployment and management of ML workflows.
+
+```yaml
+apiVersion: kubeflow.org/v1
+kind: TFJob
+metadata:
+  name: training-job
+spec:
+  tfReplicaSpecs:
+    Worker:
+      replicas: 4
+      template:
+        spec:
+          containers:
+            - name: tensorflow
+              image: tensorflow/tensorflow:latest-gpu
+```
+
+## Monitoring and Observability
+
+A critical aspect of production ML systems is monitoring. You need to track:
+
+- Model performance metrics
+- Data drift
+- Infrastructure health
+- Inference latency
+
+## Conclusion
+
+Kubernetes combined with the right MLOps tools provides a powerful foundation for production ML systems. The key is to start simple and add complexity as needed.
